@@ -1,25 +1,31 @@
 package Interface;
 
+import java.util.Random;
+
 public class PlayerImpl implements Player {
+
+    private String[] name = {"Kasper", "David", "Tjalfe"};
+    private String thisName;
+    private Random RNGeesus;
 
     @Override
     public void init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RNGeesus = new Random();
+        thisName = name[RNGeesus.nextInt(3)];
     }
 
     @Override
     public int[] place() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new int[]{RNGeesus.nextInt(3), RNGeesus.nextInt(3)};
     }
 
     @Override
     public void board(int[][] board) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return thisName;
     }
 
 }

@@ -19,8 +19,10 @@ public class TicTacToe {
         o.init();
 
         while (playing) {
-            turn(x, board, 1);
-            turn(o, board, 2);
+            turn(o, board, 1);
+            printBoard(board);
+            turn(x, board, 2);
+            printBoard(board);
         }
 
         System.out.println("player " + lastPlayed.getName() + " wins!");
@@ -44,7 +46,7 @@ public class TicTacToe {
     }
 
     public static void checkBoard(int[][] board, int[] spot, int id) {
-        playing = ((board[spot[0]][0] == id
+        playing = !((board[spot[0]][0] == id
                 && board[spot[0]][1] == id
                 && board[spot[0]][2] == id)
                 || (board[0][spot[1]] == id
@@ -56,5 +58,39 @@ public class TicTacToe {
                 || (board[0][2] == id
                 && board[1][1] == id
                 && board[2][0] == id));
+    }
+
+    public static void printBoard(int[][] board) {
+        for (int row = 0; row < 3;
+                ++row) {
+            for (int col = 0; col < 3; ++col) {
+                printCell(board[row][col]); // print each of the cells
+                if (col != 2) {
+                    System.out.print("|");   // print vertical partition
+                }
+            }
+            System.out.println();
+            if (row != 2) {
+                System.out.println("-----------"); // print horizontal partition
+            }
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+    }
+
+    public static void printCell(int content) {
+        switch (content) {
+            case 0:
+                System.out.print("   ");
+                break;
+            case 1:
+                System.out.print(" O ");
+                break;
+            case 2:
+                System.out.print(" X ");
+                break;
+        }
     }
 }
